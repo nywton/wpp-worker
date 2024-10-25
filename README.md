@@ -14,8 +14,8 @@ A client application for managing WhatsApp services efficiently. This project al
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/whatsapp-worker-client.git
-   cd whatsapp-worker-client
+   git clone https://github.com/nywton/wpp-worker.git
+   cd wpp-worker
    ```
 
 2. Install dependencies:
