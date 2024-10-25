@@ -31,6 +31,15 @@ npm run dev
 
 Then it will show a QR code to scan.
 
+## Launch Chrome
+if you want to launch Chrome, edit your environment variables and set `SKIP_BROWSER`=true:
+```txt
+# environments/.env.dev
+...
+SKIP_BROWSER=false # change it to false if you want to launch Chrome
+```
+
+
 ## Contributing
 Contributions are welcome! Please follow these steps to contribute:
 1. Fork the repository.

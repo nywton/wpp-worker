@@ -9,6 +9,17 @@ import type { Message } from '../../types/models';
 import { IWhatsAppClient } from '.';
 import * as qrcode from 'qrcode-terminal';
 
+// Set headless to false if you want to see the browser
+const isHeadless: boolean = process.env.SKIP_BROWSER === 'true';
+
+// Default Session Storage Strategy is LocalAuth
+// We need implements S3 or Mongo Strategies in order to
+// use efemeral containers
+const sessionStorage: LocalAuth = new LocalAuth({
+  clientId: process.env.LOCAL_AUTH_CLIENT_ID,
+  dataPath: process.env.LOCAL_AUTH_DATA_PATH,
+});
+
 export class WhatsAppWebJS implements IWhatsAppClient {
   private instance: Client | null = null;
 
@@ -20,12 +31,9 @@ export class WhatsAppWebJS implements IWhatsAppClient {
     if (this.instance) return this.instance;
 
     this.instance = new Client({
-      authStrategy: new LocalAuth({
-        clientId: "worker",
-        dataPath: "sessions"
-      }),
+      authStrategy: sessionStorage,
       puppeteer: {
-        headless: true, // false makes browser launch. True for running on servers
+        headless: isHeadless,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       }
     });
@@ -35,6 +43,10 @@ export class WhatsAppWebJS implements IWhatsAppClient {
     });
 
     return this.instance;
+  }
+
+  skipInitializeBrowser(): boolean {
+    return process.env.SKIP_BROWSER === 'true';
   }
 
   /** Starts the WhatsApp client. */
