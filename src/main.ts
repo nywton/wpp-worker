@@ -1,10 +1,12 @@
 import { WhatsAppWebJS } from './wrappers/whatsapp/wweb-js';
 import { IWhatsAppClient } from './wrappers/whatsapp';
 import { onMessage, onReady } from './handlers';
+import { logAsciiArt } from './utils/asciiArt';
 
 const wpp: IWhatsAppClient = new WhatsAppWebJS();
 
 function runWhatsAppWeb(): void {
+  logAsciiArt();
   console.log('Starting WhatsApp client...');
   try {
     wpp.start();
