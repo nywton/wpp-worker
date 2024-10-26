@@ -1,4 +1,4 @@
-# WhatsApp Worker Client
+# WhatsApp Client
 
 ## Description
 A client application for managing WhatsApp services efficiently. This project allows you to handle tasks related to WhatsApp messaging and provides a user-friendly interface for interaction.
